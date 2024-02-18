@@ -3,7 +3,17 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
+function showModal(image) {
+	var modal = document.getElementById("modal");
+	var modalImage = document.getElementById("modal-image");
+	modal.style.display = "block";
+	modalImage.src = image.src;
+ }
 
+ function hideModal() {
+	var modal = document.getElementById("modal");
+	modal.style.display = "none";
+ }
 (function($) {
 
 	skel.breakpoints({
