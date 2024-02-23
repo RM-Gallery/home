@@ -1551,3 +1551,12 @@
 			margin: auto;
 			margin-top: 5%;
 		 }
+
+		#my-span{
+			display:inline-block;
+			font-weight:bold;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			color:#fff
+		}

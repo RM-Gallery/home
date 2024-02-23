@@ -1,8 +1,6 @@
 <!DOCTYPE HTML>
 <!--
-	Radius by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+	Ron Mahony's Personal website created by Xiaoxiao Liu (rosaliu.567@gmail.com)
 -->
 <html>
 	<head>
@@ -31,132 +29,40 @@
 			<div id="main">
 				<div class="inner">
 					<div class="columns">
+					
+						<div id="gallery"></div>
 
-						<!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
-							<div class="image fit">
-								<img src="./images/pic01.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="./images/pic02.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="./images/pic03.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="./images/pic04.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-
-						<!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
-							<div class="image fit">
-								<img src="./images/pic05.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="./images/pic06.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="./images/pic08.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="./images/pic07.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-
-						<!-- Column 3 (horizontal, vertical, horizontal, vertical) -->
-							<div class="image fit">
-								<img src="./images/pic09.JPG" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<!-- <div class="image fit">
-								<img src="images/pic12.jpg" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="images/pic11.jpg" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-							</div>
-							<div class="image fit">
-								<img src="images/pic10.jpg" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-
-							</div> -->
-
-						<!-- Column 4 (vertical, horizontal, vertical, horizontal) -->
-							<!-- <div class="image fit">
-								<img src="images/pic13.jpg" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-
-							</div>
-							<div class="image fit">
-								<img src="images/pic14.jpg" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-
-							</div>
-							<div class="image fit">
-								<img src="images/pic15.jpg" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-
-							</div>
-							<div class="image fit">
-								<img src="images/pic16.jpg" alt="image" onclick="showModal(this)">
-		  
-								<div id="modal" class="modal" onclick="hideModal()">
-								  <img id="modal-image" class="modal-image">
-								</div>
-
-							</div> -->
-
+						<script>
+						fetch('./images.json')
+							.then(response => response.json())
+							.then(images => {
+								const gallery = document.getElementById('gallery');
+								images.forEach(imageFileName => {
+									// 提取文件名（不包含扩展名）
+									const fileNameWithoutExtension = imageFileName.split('.').slice(0, -1).join('.');
+									
+									// 创建图片和标题的HTML结构
+									const imageHTML = `
+										<div class="image fit">
+											<img src="./images/${imageFileName}" alt="${fileNameWithoutExtension}" onclick="showModal(this)">
+											<div class="image-title">${fileNameWithoutExtension}</div> <!-- 图片标题 -->
+											<div id="modal" class="modal" onclick="hideModal()">
+												<img id="modal-image" class="modal-image">
+												<span id="my-span"></span>
+											</div>
+										</div>
+									`;
+						
+									console.log("Before adding image:", gallery.innerHTML);
+						
+									// 将创建的HTML结构添加到gallery中
+									gallery.innerHTML += imageHTML;
+						
+									console.log("After adding image:", gallery.innerHTML);
+								});
+							})
+							.catch(error => console.error('Error loading the images:', error));
+						</script>
 					</div>
 				</div>
 			</div>
@@ -177,7 +83,7 @@
 							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
 						</ul>
-						&copy; R-M Gallery. Design: <a href="https://templated.co">Ron Mahony</a>. Images: <a href="https://unsplash.com/">Ron Mahony</a>.
+						&copy; Ron Mahony. Design: <a href="https://templated.co">Ron Mahony</a>. Images: <a href="https://unsplash.com/">Ron Mahony</a>.
 					</div>
 				</div>
 			</footer>

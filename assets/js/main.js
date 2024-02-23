@@ -8,6 +8,10 @@ function showModal(image) {
 	var modalImage = document.getElementById("modal-image");
 	modal.style.display = "block";
 	modalImage.src = image.src;
+	console.log(modalImage.src)
+	var span = document.getElementById("my-span");
+    span.innerHTML = modalImage.src.slice(-9,-4);
+	console.log(typeof(modalImage.src))
  }
 
  function hideModal() {
