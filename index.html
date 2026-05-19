@@ -1,13 +1,14 @@
 <!DOCTYPE HTML>
 <!--
 	Ron Mahony's Personal website created by Xiaoxiao Liu (rosaliu.567@gmail.com)
+	British Countryside Art Gallery Style
 -->
 <html>
 	<head>
-		<title>RM-Gallery</title>
+		<title>Ron Mahony — Watercolour Gallery</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />		
+		<link rel="stylesheet" href="assets/css/main.css" />
 
 	</head>
 	<body>
@@ -16,20 +17,24 @@
 			<header id="header">
 				<div class="inner">
 					<div class="content">
-						<h1>Welcome</h1>
-						<h2>A collection of Ron Mahony's <br />
-						drawings collection</h2>
-						<a href="#" class="button big alt"><span>Let's Go</span></a>
+						<h1>Ron Mahony</h1>
+						<h2>A Collection of Watercolours</h2>
+						<div class="subtitle">Landscapes &amp; Scenes from the British Isles</div>
+						<a href="#" class="button big alt"><span>Enter Gallery</span></a>
 					</div>
-					<a href="#" class="button hidden"><span>Let's Go</span></a>
+					<a href="#" class="button hidden"><span>Gallery</span></a>
 				</div>
 			</header>
 
 		<!-- Main -->
 			<div id="main">
 				<div class="inner">
+					<div class="gallery-header">
+						<h2>The Collection</h2>
+						<div class="ornament">&mdash;</div>
+					</div>
 					<div class="columns">
-					
+
 						<div id="gallery"></div>
 
 						<script>
@@ -38,27 +43,16 @@
 							.then(images => {
 								const gallery = document.getElementById('gallery');
 								images.forEach(imageFileName => {
-									// 提取文件名（不包含扩展名）
 									const fileNameWithoutExtension = imageFileName.split('.').slice(0, -1).join('.');
-									
-									// 创建图片和标题的HTML结构
+
 									const imageHTML = `
 										<div class="image fit">
 											<img src="./images/${imageFileName}" alt="${fileNameWithoutExtension}" onclick="showModal(this)">
-											<div class="image-title">${fileNameWithoutExtension}</div> <!-- 图片标题 -->
-											<div id="modal" class="modal" onclick="hideModal()">
-												<img id="modal-image" class="modal-image">
-												<span id="my-span"></span>
-											</div>
+											<div class="image-title">${fileNameWithoutExtension}</div>
 										</div>
 									`;
-						
-									console.log("Before adding image:", gallery.innerHTML);
-						
-									// 将创建的HTML结构添加到gallery中
+
 									gallery.innerHTML += imageHTML;
-						
-									console.log("After adding image:", gallery.innerHTML);
 								});
 							})
 							.catch(error => console.error('Error loading the images:', error));
@@ -72,21 +66,26 @@
 				<a href="#" class="info fa fa-info-circle"><span>About</span></a>
 				<div class="inner">
 					<div class="content">
-						<h3>Welcome to RM's Art Gallery</h3>
+						<h3>About the Gallery</h3>
 						<p>You are very welcome to copy the electronic images for any non-commercial usages. If you have any questions about paintings, please feel free to contact: xxx@gmail.com</p>
 					</div>
 					<div class="copyright">
-						<h3>Follow me</h3>
+						<h3>Follow</h3>
 						<ul class="icons">
 							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
 						</ul>
-						&copy; Ron Mahony. Design: <a href="https://templated.co">Ron Mahony</a>. Images: <a href="https://unsplash.com/">Ron Mahony</a>.
+						&copy; Ron Mahony. All watercolour works by Ron Mahony.
 					</div>
 				</div>
 			</footer>
+
+		<!-- Image lightbox (single instance, outside gallery to avoid hover/transform bugs) -->
+			<div id="modal" class="modal" onclick="hideModal()">
+				<img id="modal-image" class="modal-image" alt="">
+				<span id="my-span"></span>
+			</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
