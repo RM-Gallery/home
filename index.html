@@ -81,10 +81,32 @@
 				</div>
 			</footer>
 
-		<!-- Image lightbox (single instance, outside gallery to avoid hover/transform bugs) -->
-			<div id="modal" class="modal" onclick="hideModal()">
-				<img id="modal-image" class="modal-image" alt="">
-				<span id="my-span"></span>
+		<!-- Image lightbox with bid form -->
+			<div id="modal" class="modal" aria-hidden="true">
+				<button type="button" class="modal-close" onclick="hideModal()" aria-label="Close">&times;</button>
+				<div class="modal-backdrop" onclick="hideModal()"></div>
+				<div class="modal-panel" onclick="event.stopPropagation()">
+					<div class="modal-image-wrap">
+						<img id="modal-image" class="modal-image" alt="">
+					</div>
+					<aside class="modal-bid">
+						<h3 class="modal-bid-title">Place a Bid</h3>
+						<p id="modal-artwork-title" class="modal-artwork-name"></p>
+						<form id="bid-form" class="bid-form" novalidate>
+							<input type="hidden" id="bid-artwork" name="artwork" value="">
+							<label for="bid-name">Your name</label>
+							<input type="text" id="bid-name" name="name" required autocomplete="name" placeholder="Full name">
+							<label for="bid-contact">Contact</label>
+							<input type="text" id="bid-contact" name="contact" required autocomplete="email" placeholder="Email or phone">
+							<label for="bid-amount">Your bid (&pound;)</label>
+							<input type="number" id="bid-amount" name="amount" required min="1" step="1" placeholder="e.g. 150">
+							<label for="bid-message">Notes <span class="optional">(optional)</span></label>
+							<textarea id="bid-message" name="message" rows="3" placeholder="Questions or comments"></textarea>
+							<button type="submit" class="bid-submit">Submit bid</button>
+							<p id="bid-feedback" class="bid-feedback" role="status" aria-live="polite"></p>
+						</form>
+					</aside>
+				</div>
 			</div>
 
 		<!-- Scripts -->
